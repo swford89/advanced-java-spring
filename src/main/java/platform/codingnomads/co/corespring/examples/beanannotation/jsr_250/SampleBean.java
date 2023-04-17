@@ -14,9 +14,17 @@ public class SampleBean {
         System.out.println("bean @PostConstruct is gathering resources..");
     }
 
+    @PostConstruct
+    public void doStuff() { System.out.println("bean @PostConstruct --- doStuff() called"); }
+
+    @PreDestroy
+    public void preCleanup() { System.out.println("bean @PreDestroy --- preCleanup() called"); }
+
     @PreDestroy
     public void cleanup() {
         System.out.println("time to @PreDestroy and head home..");
     }
+
+
 
 }

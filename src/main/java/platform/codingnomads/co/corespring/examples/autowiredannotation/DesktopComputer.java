@@ -12,4 +12,8 @@ public class DesktopComputer {
     @Autowired
     @Qualifier("radeon")
     private VideoCard videoCard;
+
+    @Autowired
+    @Qualifier("kingston")
+    private RAM ram;
 }

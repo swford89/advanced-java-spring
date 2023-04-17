@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name = "routes")
-@Builder
 @ToString
 public class Route implements Serializable {
 
@@ -20,9 +19,6 @@ public class Route implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(unique = true)
-    private String code;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(
@@ -39,4 +35,16 @@ public class Route implements Serializable {
             foreignKey = @ForeignKey(name = "fk_routes_destination_area_id")
     )
     private Area destination;
+
+    // code = "origin-destination"
+    @Column(unique = true)
+    private String code;
+
+    @Builder
+    Route(Area origin, Area destination) {
+        this.origin = origin;
+        this.destination = destination;
+        this.code = origin.getCode() + "-" + destination.getCode();
+    }
+
 }

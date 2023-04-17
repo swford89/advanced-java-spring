@@ -13,5 +13,7 @@ public class DependencyLookUpApplicationDemo {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(IOCDemoConfiguration.class);
         GreetingRenderer greetingRenderer = ctx.getBean("renderer", GreetingRenderer.class);
         greetingRenderer.render();
+        GreetingRenderer scottGreetingRenderer = ctx.getBean("scottRenderer", GreetingRenderer.class);
+        scottGreetingRenderer.render();
     }
 }

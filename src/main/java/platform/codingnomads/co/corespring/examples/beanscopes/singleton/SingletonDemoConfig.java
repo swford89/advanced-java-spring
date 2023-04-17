@@ -8,7 +8,8 @@ import org.springframework.context.annotation.Scope;
 public class SingletonDemoConfig {
     @Bean
     @Scope(value = "singleton")
-    public SpringBean springBean() {
-        return new SpringBean();
-    }
+    public SpringBean springBean() { return new SpringBean(); }
+
+//    @Bean
+//    public SpringBean springBean() { return new SpringBean(); }
 }

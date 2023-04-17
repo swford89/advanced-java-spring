@@ -16,4 +16,7 @@ public class LaptopConfiguration {
     public OS os() {
         return new OS("ubuntu");
     }
+
+    @Bean
+    public RAM ram() { return new RAM("Corsair", 5, "32G"); }
 }

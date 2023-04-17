@@ -8,7 +8,7 @@ import org.springframework.context.annotation.DependsOn;
 public class DependsOnDemoConfig {
 
     @Bean
-    @DependsOn(value = "jdk")
+    @DependsOn(value = "spring")
     public SpringDeveloper springDeveloper() {
         return new SpringDeveloper();
     }
@@ -17,4 +17,8 @@ public class DependsOnDemoConfig {
     public JDK jdk() {
         return new JDK();
     }
+
+    @Bean
+    @DependsOn(value = "jdk")
+    public Spring spring() { return new Spring(); }
 }

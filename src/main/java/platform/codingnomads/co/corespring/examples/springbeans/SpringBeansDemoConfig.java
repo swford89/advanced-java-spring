@@ -11,4 +11,6 @@ public class SpringBeansDemoConfig {
     public Address address() {
         return new Address("Main Street", 1500);
     }
+    @Bean
+    public Person person() { return new Person("Scott", "Ford"); }
 }

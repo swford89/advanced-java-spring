@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CodingNomads Comedy App</title>
+    <link rel="icon" href="https://platform.codingnomads.co/learn/theme/image.php/maker/theme/1614200408/favicon">
+</head>
+
+<header style="padding: 2%; color: blue;">
+    <!--some header content-->
+</header>
+
+<body>
+    <div style="font-size: 1.5em; padding: 2%">
+        <center>
+            <pre>
+                <!--note #1-->
+                <p th:text="${quote}" />
+
+                <!--note #2-->
+                <p>Want to hear another quote? <a href="/quote">Click Here!</a></p>
+            </pre>
+        </center>
+    </div>
+</body>
+
+<footer style="padding: 2%; color: blue;">
+    <!--some footer content-->
+</footer>
+
+</html>

@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class JpaRepoDemo implements CommandLineRunner {
@@ -23,12 +24,18 @@ public class JpaRepoDemo implements CommandLineRunner {
         SoftDrink fanta = SoftDrink.builder().name("Fanta").rating(10).build();
         SoftDrink coke = SoftDrink.builder().name("Coca-Cola").rating(4).build();
         SoftDrink drPepper = SoftDrink.builder().name("Dr. Pepper").rating(1).build();
+        SoftDrink monster = SoftDrink.builder().name("Monster").rating(6).build();
+        SoftDrink mountainDew = SoftDrink.builder().name("Mountain Dew").rating(1).build();
+        SoftDrink pepsi = SoftDrink.builder().name("Pepsi").rating(4).build();
+        SoftDrink rootBeer = SoftDrink.builder().name("A&W RootBeer").rating(7).build();
 
         //save single entity instance
         fanta = softDrinkRepo.save(fanta);
+        pepsi = softDrinkRepo.save(pepsi);
 
         //save multiple entity instances at a time
         List<SoftDrink> insertedSoftDrinks = softDrinkRepo.saveAll(List.of(coke, drPepper));
+        List<SoftDrink> moreSoftDrinks = softDrinkRepo.saveAll(List.of(monster, mountainDew, rootBeer));
 
         //make sure all entities are actually saved to the database
         softDrinkRepo.flush();
@@ -39,9 +46,20 @@ public class JpaRepoDemo implements CommandLineRunner {
             softDrinkRepo.save(sd);
         }
 
+        for (SoftDrink drink : moreSoftDrinks) {
+            if (drink.getRating() == 1) {
+                drink.setRating(2);
+                softDrinkRepo.save(drink);
+            }
+        }
+
         System.out.println("ALL SOFT DRINKS IN DESCENDING ORDER BASED ON ID");
         //get all soft drinks in ascending order and print toString() to the console
-        softDrinkRepo.findAll(Sort.by(Sort.Direction.DESC, "id")).forEach(System.out::println);
+//        softDrinkRepo.findAll(Sort.by(Sort.Direction.DESC, "id")).forEach(System.out::println);
+        Long someNum = Long.valueOf(7);
+        System.out.println(softDrinkRepo.findById(someNum));
+        Optional<SoftDrink> someDrink = softDrinkRepo.findById(Long.valueOf(5));
+        System.out.println("Queried drink: " + someDrink.toString());
 
         //find all using an example
         System.out.println("FINDING ALL USING EXAMPLE");
@@ -68,6 +86,6 @@ public class JpaRepoDemo implements CommandLineRunner {
         page.getContent().forEach(System.out::println);
 
         //delete all 3 soft drinks in a batch
-        softDrinkRepo.deleteAllInBatch();
+        //softDrinkRepo.deleteAllInBatch();
     }
 }

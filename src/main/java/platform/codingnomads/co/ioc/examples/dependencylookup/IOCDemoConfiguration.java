@@ -12,10 +12,19 @@ public class IOCDemoConfiguration {
     }
 
     @Bean
+    public ScottGreetingProvider scottProvider() { return new ScottGreetingProvider(); }
+
+    @Bean
     public GreetingRenderer renderer() {
-        GreetingRenderer renderer =
-                new StandardOutGreetingRenderer();
+        GreetingRenderer renderer = new StandardOutGreetingRenderer();
         renderer.setGreetingProvider(provider());
         return renderer;
+    }
+
+    @Bean
+    public GreetingRenderer scottRenderer() {
+        GreetingRenderer greetingRenderer = new StandardOutGreetingRenderer();
+        greetingRenderer.setGreetingProvider(scottProvider());
+        return greetingRenderer;
     }
 }

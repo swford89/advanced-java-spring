@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "drivers")
+@Table(name = "drivers", schema = "codingnomads")
 @NoArgsConstructor
 @Getter
 @Setter

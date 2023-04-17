@@ -18,5 +18,9 @@
         <property name="name" value="OpenJDK"/>
         <property name="version" value="11"/>
     </bean>
+    <bean id="os" class="platform.codingnomads.co.corespring.examples.application_context.xml.OS">
+        <property name="name" value="Ubuntu"/>
+        <property name="version" value="22.04"/>
+    </bean>
 
 </beans>

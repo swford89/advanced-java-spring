@@ -5,11 +5,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import platform.codingnomads.co.springweb.resttemplate.POST.models.ResponseObject;
-import platform.codingnomads.co.springweb.resttemplate.POST.models.Task;
+import platform.codingnomads.co.springweb.resttemplate.POST.models.*;
 
 import java.util.Objects;
 
@@ -26,21 +27,37 @@ public class PostForEntityMain {
     @Bean
     public CommandLineRunner run() throws Exception {
         return args -> {
-            Task newTask = Task.builder()
-                    .name("learn how to use postForEntity()")
-                    .description("get comfortable using the RestTemplate postForEntity() method")
-                    //be sure to use valid user id
-                    .userId(380)
-                    .completed(false)
+//            Task newTask = Task.builder()
+//                    .name("learn how to use postForEntity()")
+//                    .description("Testing task post.")
+//                    //be sure to use valid user id
+//                    .userId(380)
+//                    .completed(false)
+//                    .build();
+//
+//            ResponseEntity<TaskResponseObject> responseEntity = restTemplate
+//                    .postForEntity("http://demo.codingnomads.co:8080/tasks_api/tasks", newTask, TaskResponseObject.class);
+//
+//            if (responseEntity.getStatusCode().equals(HttpStatus.CREATED)) {
+//                System.out.println(Objects.requireNonNull(responseEntity.getBody()));
+//            } else {
+//                System.out.println(Objects.requireNonNull(responseEntity.getBody()).getError());
+//            }
+
+            User createdUser = User.builder()
+                    .email("barnaby_bubble@email.com")
+                    .firstName("Barnaby")
+                    .lastName("Bubble")
                     .build();
 
-            ResponseEntity<ResponseObject> responseEntity = restTemplate
-                    .postForEntity("http://demo.codingnomads.co:8080/tasks_api/tasks", newTask, ResponseObject.class);
+            System.out.println("\nPostForEntityMain: \n" + createdUser);
 
-            if (responseEntity.getStatusCode().equals(HttpStatus.CREATED)) {
-                System.out.println(Objects.requireNonNull(responseEntity.getBody()));
+            ResponseEntity<UserResponseObject> postResponseEntity = restTemplate
+                    .postForEntity("http://demo.codingnomads.co:8080/tasks_api/users", createdUser, UserResponseObject.class);
+            if (postResponseEntity.getStatusCode().equals(HttpStatus.CREATED)) {
+                System.out.println(Objects.requireNonNull(postResponseEntity.getBody()));
             } else {
-                System.out.println(Objects.requireNonNull(responseEntity.getBody()).getError());
+                System.out.println(Objects.requireNonNull(postResponseEntity.getBody().getError()));
             }
         };
     }

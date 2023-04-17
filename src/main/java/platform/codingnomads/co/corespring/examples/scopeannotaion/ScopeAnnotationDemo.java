@@ -9,19 +9,23 @@ public class ScopeAnnotationDemo {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(ScopeAnnotationDemoConfig.class);
         ctx.refresh();
-        SingletonBean singletonBean1 = ctx.getBean(SingletonBean.class);
-        SingletonBean singletonBean2 = ctx.getBean(SingletonBean.class);
+//        SingletonBean singletonBean1 = ctx.getBean(SingletonBean.class);
+//        SingletonBean singletonBean2 = ctx.getBean(SingletonBean.class);
+        Pickle pickleBean = ctx.getBean(Pickle.class);
 
         System.out.println("-----Hashcode of SingletonBean-----");
-        System.out.println(singletonBean1.hashCode());
-        System.out.println(singletonBean2.hashCode());
+//        System.out.println(singletonBean1.hashCode());
+//        System.out.println(singletonBean2.hashCode());
+        System.out.println(pickleBean.hashCode());
 
-        final PrototypeBean prototypeBean1 = ctx.getBean(PrototypeBean.class);
-        final PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
+//        final PrototypeBean prototypeBean1 = ctx.getBean(PrototypeBean.class);
+//        final PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
+        Pineapple pineappleBean = ctx.getBean(Pineapple.class);
 
         System.out.println("-----Hashcode of PrototypeBean-----");
-        System.out.println(prototypeBean1.hashCode());
-        System.out.println(prototypeBean2.hashCode());
+//        System.out.println(prototypeBean1.hashCode());
+//        System.out.println(prototypeBean2.hashCode());
+        System.out.println(pineappleBean.hashCode());
         System.out.println();
         ctx.close();
     }

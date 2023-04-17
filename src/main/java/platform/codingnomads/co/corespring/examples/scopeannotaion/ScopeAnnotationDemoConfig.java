@@ -18,4 +18,12 @@ public class ScopeAnnotationDemoConfig {
     public PrototypeBean prototypeBean() {
         return new PrototypeBean();
     }
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public Pineapple pineapple() { return new Pineapple(); }
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public Pickle pickle() { return new Pickle(); }
 }

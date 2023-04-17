@@ -2,6 +2,7 @@ package platform.codingnomads.co.corespring.examples.beanscopes.singleton;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import platform.codingnomads.co.corespring.examples.springbeans.SpringBeansDemoConfig;
 
 @SpringBootApplication
 public class SingletonDemo {
@@ -15,6 +16,9 @@ public class SingletonDemo {
 
         SpringBean springBean2 = ctx.getBean(SpringBean.class);
         System.out.println("Hash code: " + springBean2.hashCode());
+
+        SpringBean springBean3 = ctx.getBean(SpringBean.class);
+        System.out.println("Hash code: " + springBean3.hashCode());
 
         ctx.close();
     }

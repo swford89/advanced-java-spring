@@ -11,10 +11,21 @@ public class Nomad {
 
     private String name;
 
+    private String course;
+
+    private String courseTrack;
+
     private Integer age;
 
-    public Nomad(@Value("${nomad.name}") String name, @Value("${nomad.age}") Integer age) {
+    public Nomad(
+            @Value("${nomad.name}") String name,
+            @Value("${nomad.course}") String course,
+            @Value("${nomad.courseTrack}") String courseTrack,
+            @Value("${nomad.age}") Integer age
+            ) {
         this.name = name;
+        this.course = course;
+        this.courseTrack = courseTrack;
         this.age = age;
     }
 
@@ -55,4 +66,9 @@ public class Nomad {
     public Map<String, String> getDatabaseValues() {
         return databaseValues;
     }
+    @Value("${nomad.course}")
+    public String getCourse() { return course; }
+
+    @Value("${nomad.courseTrack}")
+    public String getCourseTrack() { return courseTrack; }
 }

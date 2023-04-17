@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ModernInfo {
+public @interface   ModernInfo {
     String info() default "modern api information return";
 }

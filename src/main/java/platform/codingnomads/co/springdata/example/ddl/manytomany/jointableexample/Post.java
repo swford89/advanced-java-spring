@@ -33,4 +33,8 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name = "location_latitude", referencedColumnName = "latitude")
     )
     private Set<Location> locations;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "post_hashtag_table")
+    private Set<Hashtag> hashtags;
 }
